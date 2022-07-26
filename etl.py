@@ -41,6 +41,10 @@ def transform(data):
 
     return data
 
+def load(data):
+    data.to_csv("top_players_salary.csv", index=False)
+
 extracted_data = extract()
 transformed_data = transform(extracted_data)
+load(transformed_data)
 
