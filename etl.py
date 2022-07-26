@@ -28,4 +28,19 @@ def extract():
 
     return extracted_data 
 
+def transform(data):
+    # Transform weekly salary -> convert to int
+    for i in data["Weekly Salary"]:
+        amount_string = i.split("£")[1]
+        amount_string = amount_string.split(",")
+        amount = int(amount_string[0] + amount_string[1])
+
+        data["Weekly Salary"] = data["Weekly Salary"].replace([i], amount)
+
+    data.rename(columns = {"Weekly Salary": "Weekly Salary (GBP)"}, inplace = True)
+
+    return data
+
 extracted_data = extract()
+transformed_data = transform(extracted_data)
+
