@@ -44,7 +44,22 @@ def transform(data):
 def load(data):
     data.to_csv("top_players_salary.csv", index=False)
 
+def log(message):
+    timestamp_format = '%Y-%h-%d-%H:%M:%S' # Year-Monthname-Day-Hour-Minute-Second
+    now = datetime.now() # get current timestamp
+    timestamp = now.strftime(timestamp_format)
+    with open("logfile.txt","a") as f:
+        f.write(timestamp + ',' + message + '\n')
+
+log("ETL Job Started")
+log("Extract phase Started")
 extracted_data = extract()
+log("Extract phase Ended")
+log("Transform phase Started")
 transformed_data = transform(extracted_data)
+log("Transform phase Ended")
+log("Load phase Started")
 load(transformed_data)
+log("Load phase Ended")
+log("ETL Job Ended")
 
