@@ -26,6 +26,6 @@ def extract():
 
     extracted_data = pd.DataFrame(players)
 
-    return extracted_data
+    return extracted_data 
 
 extracted_data = extract()
